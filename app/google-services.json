@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "778031956767",
+    "project_id": "kotlintrip",
+    "storage_bucket": "kotlintrip.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:778031956767:android:1c5b34129e9d3497e9662a",
+        "android_client_info": {
+          "package_name": "com.hoofit.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC4g_JTXGJnFZ5WPVuzTzHLkeuORKy326M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

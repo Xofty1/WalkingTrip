@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:https="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".ui.profile.HelpFragment">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:fontFamily="@font/montserrat_semibold"
+        android:layout_marginBottom="10dp"
+        android:text="Помощь"
+        android:textColor="@color/dark_blue"
+        android:textSize="21sp"
+        android:layout_marginTop="16dp"/>
+  <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:textColor="@color/dark_blue"
+      android:layout_marginTop="16dp"
+      android:text="Главная  -  вкладка, с которой вы можете перейти к списку заповеднников и троп, а также посмотреть подборку интересной информации\n
+Карта - вкладка, на которой вы можете увидеть и ознакомиться со всеми тропами. При нажатии на тропу вы увидите всплывающее окно и сможете более подробно ознакомиться с тропой\n
+Профиль - вкладка, на которой вы можете посмотреть информаци. о профиль: сохраненный и пройденные тропы, изменить данные о себе, а также настроить приложение для себя"/>
+    <TextView
+        android:id="@+id/linkTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Мы в Телеграмме: @na_svoih_dvoih"
+        android:textColor="@color/dark_blue"
+        android:textSize="16sp"
+        android:layout_marginTop="16dp"/>
+    <Button
+        android:id="@+id/buttonToCreator"
+        style="@style/RoundedButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        android:text="О разработчике" />
+
+
+
+</LinearLayout>

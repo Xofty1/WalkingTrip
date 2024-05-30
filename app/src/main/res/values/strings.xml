@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">На своих двоих</string>
+    <string name="title_main">Главная</string>
+    <string name="title_map">Карта</string>
+    <string name="title_profile">Профиль</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="options_array">
+        <item>Заповедник</item>
+        <item>Тропа</item>
+        <item>Интернет ресурс</item>
+    </string-array>
+    <string name="name_hint">Имя</string>
+    <string name="username_hint">Логин</string>
+    <string name="email_hint">Электронная почта</string>
+    <string name="save_changes">Сохранить изменения</string>
+</resources>

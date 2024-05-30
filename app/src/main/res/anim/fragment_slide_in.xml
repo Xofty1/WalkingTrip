@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?><!-- fragment_slide_in.xml -->
+<!-- fragment_slide_out.xml -->
+<set xmlns:android="http://schemas.android.com/apk/res/android">
+    <objectAnimator
+        android:duration="300"
+        android:propertyName="translationX"
+        android:valueFrom="1080dp"
+        android:valueTo="0" />
+</set>
+
