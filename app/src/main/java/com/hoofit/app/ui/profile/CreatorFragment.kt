@@ -1,4 +1,4 @@
-package com.hoofit.app.profile
+package com.hoofit.app.ui.profile
 
 import android.os.Bundle
 import android.view.LayoutInflater

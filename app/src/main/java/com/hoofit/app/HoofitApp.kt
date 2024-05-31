@@ -13,7 +13,7 @@ class HoofitApp : Application() {
         var user: User? = null
         var reserves: ReserveData? = null
         var allTrails: MutableList<Trail>? = null
-        var interestings: MutableList<Interesting> = ArrayList()
+        var interestings: MutableList<Interesting> = mutableListOf()
     }
 
     override fun onCreate() {

@@ -1,4 +1,4 @@
-package com.hoofit.app.profile
+package com.hoofit.app.ui.profile
 
 import android.content.Intent
 import android.net.Uri

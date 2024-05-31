@@ -10,7 +10,7 @@ class Trail : Serializable {
     var difficulty: String? = null
     var timeRequired: String? = null
     var description: String? = null
-    var coordinatesList: List<Coordinate>? = null
+    var coordinatesList: MutableList<Coordinate>? = null
     override fun equals(o: Any?): Boolean {
         if (this === o) return true
         if (o == null || javaClass != o.javaClass) return false
@@ -30,7 +30,7 @@ class Trail : Serializable {
         difficulty: String?,
         timeRequired: String?,
         description: String?,
-        coordinatesList: List<Coordinate>?
+        coordinatesList: MutableList<Coordinate>?
     ) {
         this.id = id
         this.name = name

@@ -33,8 +33,12 @@ class TrailAdapter(private val context: Context, private val trails: MutableList
             itemClickListener?.onItemClick(trails!![position])
         }
 
+        holder.itemView.tag = trails!![position]
+
         holder.itemView.setOnLongClickListener {
-            onItemLongClickListener?.onItemLongClick(trails!![position]) ?: false
+            val trail = holder.itemView.tag as Trail
+            onItemLongClickListener?.onItemLongClick(trail)
+            true
         }
 
         holder.textName.text = trails!![position].name
@@ -61,6 +65,6 @@ class TrailAdapter(private val context: Context, private val trails: MutableList
     }
 
     interface OnItemLongClickListener {
-        fun onItemLongClick(trail: Trail): Boolean
+        fun onItemLongClick(trail: Trail)
     }
 }

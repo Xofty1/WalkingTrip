@@ -1,4 +1,4 @@
-package com.hoofit.app
+package com.hoofit.app.ui
 
 import android.Manifest
 import android.app.AlertDialog
@@ -20,6 +20,9 @@ import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
+import com.hoofit.app.HoofitApp
+import com.hoofit.app.MainActivity
+import com.hoofit.app.R
 import com.hoofit.app.data.Trail
 import com.hoofit.app.databinding.DialogTrailInfoBinding
 import com.hoofit.app.databinding.FragmentMapBinding
@@ -82,13 +85,13 @@ class MapFragment : Fragment() {
         bindingInfo.buttonToTrail.setOnClickListener {
             dialog?.dismiss()
             polyline.setStrokeColor(resources.getColor(R.color.orange))
-//            val fragment = InfoTrailFragment()
-//            val bundle = Bundle().apply {
-//                putSerializable("trail", trail)
-//            }
-//            fragment.arguments = bundle
-//            val transaction = parentFragmentManager.beginTransaction()
-//            MainActivity.makeTransaction(transaction, fragment)
+            val fragment = InfoTrailFragment()
+            val bundle = Bundle().apply {
+                putSerializable("trail", trail)
+            }
+            fragment.arguments = bundle
+            val transaction = parentFragmentManager.beginTransaction()
+            MainActivity.makeTransaction(transaction, fragment)
         }
 
         dialog?.setOnDismissListener {

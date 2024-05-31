@@ -1,4 +1,4 @@
-package com.hoofit.app
+package com.hoofit.app.ui
 
 import android.app.AlertDialog
 import android.graphics.Color
@@ -13,11 +13,13 @@ import com.bumptech.glide.Glide
 import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.storage.FirebaseStorage
+import com.hoofit.app.HoofitApp
+import com.hoofit.app.MainActivity
 import com.hoofit.app.databinding.FragmentProfileBinding
 import com.hoofit.app.databinding.RequestPasswordBinding
-import com.hoofit.app.profile.EditUserFragment
-import com.hoofit.app.profile.HelpFragment
-import com.hoofit.app.profile.SettingsFragment
+import com.hoofit.app.ui.profile.EditUserFragment
+import com.hoofit.app.ui.profile.HelpFragment
+import com.hoofit.app.ui.profile.SettingsFragment
 import java.io.Serializable
 
 class ProfileFragment : Fragment() {

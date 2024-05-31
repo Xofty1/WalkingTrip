@@ -1,4 +1,4 @@
-package com.hoofit.app
+package com.hoofit.app.ui
 
 import android.content.Context
 import android.os.Bundle
@@ -8,11 +8,14 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.hoofit.app.HoofitApp
+import com.hoofit.app.MainActivity
 import com.hoofit.app.adapter.TrailAdapter
 import com.hoofit.app.data.Reserve
 import com.hoofit.app.data.Trail
 import com.hoofit.app.databinding.FragmentTrailBinding
-import com.hoofit.app.mainMenu.OnFragmentInteractionListener
+import com.hoofit.app.editInfo.EditTrailFragment
+import com.hoofit.app.ui.mainMenu.OnFragmentInteractionListener
 
 class TrailFragment : Fragment() {
     private var _binding: FragmentTrailBinding? = null
@@ -43,7 +46,7 @@ class TrailFragment : Fragment() {
 
         handleBundleArguments(arguments)
 
-//        setupAddButton()
+        setupAddButton()
     }
 
     private fun handleBundleArguments(bundle: Bundle?) {
@@ -66,9 +69,9 @@ class TrailFragment : Fragment() {
                 binding.buttonAddTrail.visibility = View.INVISIBLE
             }
             setupRecyclerView(adapter)
-//            if (HoofitApp.user!!.admin && reserve != null) {
-//                setupItemLongClickListener(adapter)
-//            }
+            if (HoofitApp.user!!.admin && reserve != null) {
+                setupItemLongClickListener(adapter)
+            }
             setupItemClickListener(adapter)
         }
     }
@@ -79,18 +82,20 @@ class TrailFragment : Fragment() {
         binding.listTrail.adapter = adapter
     }
 
-//    private fun setupItemLongClickListener(adapter: TrailAdapter) {
-//        adapter.setOnItemLongClickListener { trail ->
-//            val fragment = EditTrailFragment()
-//            val bundle = Bundle()
-//            bundle.putSerializable("reserve", reserve)
-//            bundle.putSerializable("trail", trail)
-//            fragment.arguments = bundle
-//            val transaction = parentFragmentManager.beginTransaction()
-//            MainActivity.makeTransaction(transaction, fragment)
-//        }
-//    }
 
+    private fun setupAddButton() {
+        if (!HoofitApp.user!!.admin) {
+            binding.buttonAddTrail.visibility = View.INVISIBLE
+        }
+        binding.buttonAddTrail.setOnClickListener {
+            val fragment = EditTrailFragment()
+            val reserve = reserve // Убедитесь, что переменная reserve существует и может быть сериализирована
+            val bundle = Bundle().apply { putSerializable("reserve", reserve) }
+            fragment.arguments = bundle
+            val transaction = childFragmentManager.beginTransaction()
+            MainActivity.makeTransaction(transaction, fragment)
+        }
+    }
     private fun setupItemClickListener(adapter: TrailAdapter) {
         adapter.setOnItemClickListener(object : TrailAdapter.OnItemClickListener {
             override fun onItemClick(trail: Trail) {
@@ -105,19 +110,19 @@ class TrailFragment : Fragment() {
         })
     }
 
-//    private fun setupAddButton() {
-//        if (!HoofitApp.user!!.admin) {
-//            binding.buttonAddTrail.visibility = View.INVISIBLE
-//        }
-//        binding.buttonAddTrail.setOnClickListener {
-//            val fragment = EditTrailFragment()
-//            val bundle = Bundle()
-//            bundle.putSerializable("reserve", reserve)
-//            fragment.arguments = bundle
-//            val transaction = parentFragmentManager.beginTransaction()
-//            MainActivity.makeTransaction(transaction, fragment)
-//        }
-//    }
+    private fun setupItemLongClickListener(adapter: TrailAdapter) {
+        adapter.setOnItemLongClickListener(object : TrailAdapter.OnItemLongClickListener {
+            override fun onItemLongClick(trail: Trail) {
+                val fragment = EditTrailFragment()
+                val bundle = Bundle()
+                bundle.putSerializable("reserve", reserve)
+                bundle.putSerializable("trail", trail)
+                fragment.arguments = bundle
+                val transaction = parentFragmentManager.beginTransaction()
+                MainActivity.makeTransaction(transaction, fragment)
+            }
+        })
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()

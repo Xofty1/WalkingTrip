@@ -1,4 +1,4 @@
-package com.hoofit.app.profile
+package com.hoofit.app.ui.profile
 
 import android.app.AlertDialog
 import android.content.Intent
@@ -131,6 +131,8 @@ class SettingsFragment : Fragment() {
         bindingInfo.buttonToTrail.setOnClickListener {
             dialog.dismiss()
         }
+        bindingInfo.dialogTitle.text = "Вы точно хотите выйти?"
+        bindingInfo.dialogMessage.text = ""
     }
 
     override fun onDestroyView() {

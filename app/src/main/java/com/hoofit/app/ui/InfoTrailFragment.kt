@@ -1,4 +1,4 @@
-package com.hoofit.app
+package com.hoofit.app.ui
 
 import android.animation.ValueAnimator
 import android.graphics.Color
@@ -11,6 +11,9 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.google.firebase.database.FirebaseDatabase
+import com.hoofit.app.HoofitApp
+import com.hoofit.app.MainActivity
+import com.hoofit.app.R
 import com.hoofit.app.data.Trail
 import com.hoofit.app.databinding.FragmentInfoTrailBinding
 
@@ -98,7 +101,8 @@ class InfoTrailFragment : Fragment() {
             }
             isLiked = !isLiked
             colorAnimator.start()
-            HoofitApp.user!!.id?.let { it1 -> users.child(it1).child("likedTrails").setValue(HoofitApp.user!!.likedTrails) }
+            HoofitApp.user!!.id?.let { it1 -> users.child(it1).child("likedTrails").setValue(
+                HoofitApp.user!!.likedTrails) }
         }
 
         return binding.root

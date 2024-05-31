@@ -16,7 +16,7 @@ import com.hoofit.app.data.Reserve
 import com.hoofit.app.data.ReserveData
 import com.hoofit.app.data.Trail
 import com.hoofit.app.data.User
-import com.hoofit.app.auth.RegisterFragment
+import com.hoofit.app.ui.auth.RegisterFragment
 
 class AuthActivity : AppCompatActivity() {
     private lateinit var mAuth: FirebaseAuth

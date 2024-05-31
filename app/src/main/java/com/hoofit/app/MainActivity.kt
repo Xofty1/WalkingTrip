@@ -6,8 +6,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.google.android.gms.location.LocationRequest
 import com.hoofit.app.databinding.ActivityMainBinding
-import com.hoofit.app.mainMenu.OnFragmentInteractionListener
+import com.hoofit.app.ui.mainMenu.OnFragmentInteractionListener
 import com.hoofit.app.ui.MainFragment
+import com.hoofit.app.ui.MapFragment
+import com.hoofit.app.ui.ProfileFragment
 
 class MainActivity : AppCompatActivity(), OnFragmentInteractionListener {
     private lateinit var binding: ActivityMainBinding

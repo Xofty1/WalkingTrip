@@ -1,4 +1,4 @@
-package com.hoofit.app.auth
+package com.hoofit.app.ui.auth
 
 import android.content.Intent
 import android.os.Bundle
