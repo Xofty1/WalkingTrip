@@ -4,6 +4,7 @@ plugins {
     id("com.google.gms.google-services")
 }
 
+
 android {
     namespace = "com.hoofit.app"
     compileSdk = 34
@@ -37,6 +38,7 @@ android {
     buildFeatures{
         viewBinding = true
     }
+
 }
 
 dependencies {
@@ -48,6 +50,9 @@ dependencies {
     implementation("com.google.firebase:firebase-auth:23.0.0")
     implementation("com.google.firebase:firebase-database:21.0.0")
     implementation("com.google.firebase:firebase-storage:21.0.0")
+    implementation("androidx.test:core-ktx:1.5.0")
+    implementation("androidx.test.ext:junit-ktx:1.1.5")
+    implementation("androidx.fragment:fragment-testing:1.7.1")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
@@ -58,4 +63,25 @@ dependencies {
     implementation("com.yandex.android:maps.mobile:4.5.1-lite")
     implementation("com.github.bumptech.glide:glide:4.12.0")
     annotationProcessor("com.github.bumptech.glide:compiler:4.12.0")
+
+    testImplementation ("junit:junit:4.13.2")
+    testImplementation ("org.mockito:mockito-core:3.9.0")
+    testImplementation ("org.mockito:mockito-inline:3.9.0")
+    androidTestImplementation ("androidx.test.ext:junit:1.1.2")
+    androidTestImplementation ("androidx.test.espresso:espresso-core:3.5.1")
+    testImplementation ("org.robolectric:robolectric:4.8.1")
+    androidTestImplementation ("androidx.test.espresso:espresso-core:3.5.1")
+    androidTestImplementation ("androidx.test:runner:1.5.2")
+    androidTestImplementation ("androidx.test:rules:1.5.0")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    androidTestImplementation("androidx.test.espresso:espresso-contrib:3.5.1") // Для использования RecyclerViewActions и других вспомогательных классов
+    androidTestImplementation("androidx.test.ext:junit:1.1.5")
+
+//
+//    implementation("androidx.test.espresso:espresso-core:3.5.1")
+//    implementation("org.mockito:mockito-core:4.5.1")
+//    implementation("org.mockito.kotlin:mockito-kotlin:4.5.1")
+//    implementation ("androidx.test:runner:1.5.2")
+//    testImplementation("org.junit.jupiter:junit-jupiter:5.8.2")
+
 }

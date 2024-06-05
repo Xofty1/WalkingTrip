@@ -21,7 +21,7 @@ class InterestingAdapter(
     private var onItemLongClickListener: OnItemLongClickListener? = null
     private var itemClickListener: OnItemClickListener? = null
 
-    fun setOnItemLongClickListener(listener: OnItemLongClickListener) {
+    fun setOnItemLongClickListener(listener: OnItemLongClickListener?) {
         this.onItemLongClickListener = listener
     }
 

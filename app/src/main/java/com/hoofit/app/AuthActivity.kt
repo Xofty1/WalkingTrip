@@ -16,11 +16,13 @@ import com.hoofit.app.data.Reserve
 import com.hoofit.app.data.ReserveData
 import com.hoofit.app.data.Trail
 import com.hoofit.app.data.User
+import com.hoofit.app.ui.LoaderFragment
 import com.hoofit.app.ui.auth.RegisterFragment
 
 class AuthActivity : AppCompatActivity() {
-    private lateinit var mAuth: FirebaseAuth
-    private val database: FirebaseDatabase = FirebaseDatabase.getInstance()
+    lateinit var mAuth: FirebaseAuth
+
+    var database: FirebaseDatabase = FirebaseDatabase.getInstance()
 
     companion object {
         private var isPersistenceEnabled = false
@@ -29,7 +31,7 @@ class AuthActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_auth)
-//        replaceFragment(LoaderFragment())
+        replaceFragment(LoaderFragment())
         mAuth = FirebaseAuth.getInstance()
 
         if (!isPersistenceEnabled) {
@@ -60,7 +62,7 @@ class AuthActivity : AppCompatActivity() {
                     HoofitApp.reserves!!.reserves = rev
                     HoofitApp.allTrails = trails
                 } else {
-                    Toast.makeText(this, "Троп пока что нет", Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(this, "Троп пока что нет", Toast.LENGTH_SHORT).show()
                 }
             } else {
                 Toast.makeText(this, "Проверьте подключение к Интернету", Toast.LENGTH_SHORT).show()
@@ -84,12 +86,16 @@ class AuthActivity : AppCompatActivity() {
                     HoofitApp.reserves!!.reserves = rev
                     HoofitApp.allTrails = trails
                 } else {
-                    Toast.makeText(this@AuthActivity, "Троп пока что нет", Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(this@AuthActivity, "Троп пока что нет", Toast.LENGTH_SHORT).show()
                 }
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
-                Toast.makeText(this@AuthActivity, "Ошибка при получении данных: ${databaseError.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    this@AuthActivity,
+                    "Ошибка при получении данных: ${databaseError.message}",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         })
 
@@ -106,7 +112,7 @@ class AuthActivity : AppCompatActivity() {
                     }
                     HoofitApp.interestings = interestings
                 } else {
-                    Toast.makeText(this, "Новостей пока нет", Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(this, "Новостей пока нет", Toast.LENGTH_SHORT).show()
                 }
             } else {
                 Toast.makeText(this, "Проверьте подключение к Интернету", Toast.LENGTH_SHORT).show()
@@ -125,12 +131,16 @@ class AuthActivity : AppCompatActivity() {
                     }
                     HoofitApp.interestings = interestings
                 } else {
-                    Toast.makeText(this@AuthActivity, "Новостей пока что нет", Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(this@AuthActivity, "Новостей пока что нет", Toast.LENGTH_SHORT).show()
                 }
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
-                Toast.makeText(this@AuthActivity, "Ошибка при получении данных: ${databaseError.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    this@AuthActivity,
+                    "Ошибка при получении данных: ${databaseError.message}",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         })
     }
@@ -156,14 +166,18 @@ class AuthActivity : AppCompatActivity() {
                     if (dataSnapshot.exists()) {
                         if (HoofitApp.user == null) HoofitApp.user = User()
                         HoofitApp.user!!.admin = dataSnapshot.getValue(Boolean::class.java) ?: false
-                        Toast.makeText(this@AuthActivity, "Admin status updated", Toast.LENGTH_SHORT).show()
+//                        Toast.makeText(this@AuthActivity, "Admin status updated", Toast.LENGTH_SHORT).show()
                     } else {
                         HoofitApp.user!!.admin = false
                     }
                 }
 
                 override fun onCancelled(databaseError: DatabaseError) {
-                    Log.e("FirebaseDatabase", "Failed to read admin field", databaseError.toException())
+                    Log.e(
+                        "FirebaseDatabase",
+                        "Failed to read admin field",
+                        databaseError.toException()
+                    )
                 }
             })
 
@@ -171,7 +185,7 @@ class AuthActivity : AppCompatActivity() {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     if (dataSnapshot.exists()) {
                         HoofitApp.user = dataSnapshot.getValue(User::class.java) ?: User()
-                        Toast.makeText(this@AuthActivity, "Email ${HoofitApp.user!!.email}", Toast.LENGTH_SHORT).show()
+//                        Toast.makeText(this@AuthActivity, "Email ${HoofitApp.user!!.email}", Toast.LENGTH_SHORT).show()
                         startActivity(Intent(this@AuthActivity, MainActivity::class.java))
                         finish()
                     } else {
@@ -180,7 +194,11 @@ class AuthActivity : AppCompatActivity() {
                 }
 
                 override fun onCancelled(databaseError: DatabaseError) {
-                    Log.e("FirebaseDatabase", "Failed to read user data", databaseError.toException())
+                    Log.e(
+                        "FirebaseDatabase",
+                        "Failed to read user data",
+                        databaseError.toException()
+                    )
                 }
             })
         } else {

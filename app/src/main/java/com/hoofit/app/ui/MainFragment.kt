@@ -4,17 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.hoofit.app.HoofitApp
 import com.hoofit.app.MainActivity
 import com.hoofit.app.R
 import com.hoofit.app.adapter.InterestingAdapter
-import com.hoofit.app.adapter.ReserveAdapter
 import com.hoofit.app.data.Interesting
 import com.hoofit.app.data.Reserve
 import com.hoofit.app.databinding.FragmentMainBinding
@@ -52,7 +49,6 @@ class MainFragment : Fragment() {
             fTrans.addToBackStack(null)
             fTrans.commit()
         }
-        Toast.makeText(requireContext(), "Size ${HoofitApp.interestings.size}", Toast.LENGTH_SHORT).show()
         val adapter = context?.let { InterestingAdapter(it, reverseList(HoofitApp.interestings)) }
         adapter!!.setOnItemClickListener(object : InterestingAdapter.OnItemClickListener {
             override fun onItemClick(interesting: Interesting) {
@@ -80,7 +76,21 @@ class MainFragment : Fragment() {
                     MainActivity.makeTransaction(transaction, fragment)
                 }
             })
+        }
+        else{
+            adapter.setOnItemLongClickListener(object : InterestingAdapter.OnItemLongClickListener {
 
+                override fun onItemLongClick(interesting: Interesting) {
+                    val fragment = EditInterestingFragment()
+                    val bundle = Bundle().apply {
+                        putSerializable("interesting", interesting)
+                    }
+                    fragment.arguments = bundle
+
+                    val transaction = parentFragmentManager.beginTransaction()
+                    MainActivity.makeTransaction(transaction, fragment)
+                }
+            })
         }
         binding!!.recyclerViewInteresting.adapter = adapter
         binding!!.recyclerViewInteresting.apply {

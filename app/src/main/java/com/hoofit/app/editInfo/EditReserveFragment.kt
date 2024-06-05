@@ -43,7 +43,7 @@ class EditReserveFragment : Fragment() {
         if (bundle != null) {
             binding.deleteButton.visibility = View.VISIBLE
             reserve = bundle.getSerializable("reserve") as? Reserve
-            Toast.makeText(activity, "Uploaded", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, "Загружено", Toast.LENGTH_SHORT).show()
 
             binding.editTextDescription.setText(reserve?.description)
             binding.editTextName.setText(reserve?.name)
@@ -83,15 +83,21 @@ class EditReserveFragment : Fragment() {
                 }
             }
             for (interesting in HoofitApp.interestings) {
-                for (trail in reserve?.trails!!) {
-                    if (interesting.trail != null && interesting.trail == trail) {
-                        Toast.makeText(activity, "Найдено", Toast.LENGTH_SHORT).show()
-                        val interestingRef = FirebaseDatabase.getInstance().getReference("interesting")
-                        interesting.id?.let { it1 -> interestingRef.child(it1).removeValue() }
-                        HoofitApp.interestings.remove(interesting)
-                        break
+                reserve?.trails?.let { trails ->
+                    for (trail in trails) {
+                        if (interesting.trail != null && interesting.trail == trail) {
+                            Toast.makeText(activity, "Найдено", Toast.LENGTH_SHORT).show()
+                            val interestingRef =
+                                FirebaseDatabase.getInstance().getReference("interesting")
+                            interesting.id?.let { id ->
+                                interestingRef.child(id).removeValue()
+                            }
+                            HoofitApp.interestings.remove(interesting)
+                            break
+                        }
                     }
                 }
+
             }
             reserve?.trails?.let { trails ->
                 for (trail in trails) {
@@ -100,7 +106,8 @@ class EditReserveFragment : Fragment() {
 
                     val users = FirebaseDatabase.getInstance().getReference("Users")
                     HoofitApp.user?.id?.let { userId ->
-                        users.child(userId).child("likedTrails").setValue(HoofitApp.user?.likedTrails)
+                        users.child(userId).child("likedTrails")
+                            .setValue(HoofitApp.user?.likedTrails)
                     }
                 }
             }
@@ -159,7 +166,7 @@ class EditReserveFragment : Fragment() {
             ref.putFile(it)
                 .addOnSuccessListener {
                     progressDialog.dismiss()
-                    Toast.makeText(activity, "Uploaded", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(activity, "Загружено", Toast.LENGTH_SHORT).show()
                 }
                 .addOnFailureListener { e ->
                     progressDialog.dismiss()
@@ -169,9 +176,17 @@ class EditReserveFragment : Fragment() {
     }
 
     private fun addData(name: String, description: String, reservesRef: DatabaseReference) {
+        if (name == "") {
+            Toast.makeText(activity, "Введите название", Toast.LENGTH_SHORT).show()
+            return
+        }
+        if (description == "") {
+            Toast.makeText(activity, "Введите описание", Toast.LENGTH_SHORT).show()
+            return
+        }
         filePath?.let {
             val progressDialog = ProgressDialog(activity)
-            progressDialog.setTitle("Uploading...")
+            progressDialog.setTitle("Загрузка...")
             progressDialog.show()
 
             val id = reservesRef.push().key // Получаем уникальный ключ
@@ -183,7 +198,7 @@ class EditReserveFragment : Fragment() {
             ref.putFile(it)
                 .addOnSuccessListener {
                     progressDialog.dismiss()
-                    Toast.makeText(activity, "Uploaded", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(activity, "Загружено", Toast.LENGTH_SHORT).show()
                     val fragment = ReserveFragment()
                     val transaction = parentFragmentManager.beginTransaction()
                     MainActivity.makeTransaction(transaction, fragment)
@@ -198,17 +213,28 @@ class EditReserveFragment : Fragment() {
     }
 
     private fun checkStoragePermission() {
-        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.READ_EXTERNAL_STORAGE)
-            != PackageManager.PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.READ_EXTERNAL_STORAGE
+            )
+            != PackageManager.PERMISSION_GRANTED
+        ) {
 
             // Разрешение на чтение внешнего хранилища не предоставлено, запрашиваем его
-            requestPermissions(arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), REQUEST_EXTERNAL_STORAGE)
+            requestPermissions(
+                arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
+                REQUEST_EXTERNAL_STORAGE
+            )
         } else {
             openFileChooser()
         }
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == REQUEST_EXTERNAL_STORAGE) {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {

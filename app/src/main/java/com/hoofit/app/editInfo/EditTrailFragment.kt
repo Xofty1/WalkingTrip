@@ -19,9 +19,9 @@ import com.hoofit.app.data.Trail
 import com.hoofit.app.databinding.FragmentEditTrailBinding
 
 class EditTrailFragment : Fragment() {
-    private lateinit var binding: FragmentEditTrailBinding
+    lateinit var binding: FragmentEditTrailBinding
     private var trail: Trail? = null
-    private lateinit var reserve: Reserve
+    lateinit var reserve: Reserve
     private lateinit var adapter: CoordinateAdapter
     private var isNewTrail = false
     private lateinit var reservesRef: DatabaseReference
@@ -48,7 +48,6 @@ class EditTrailFragment : Fragment() {
             if (trail == null) {
                 trail = Trail()
                 isNewTrail = true
-                Toast.makeText(context, "мы создаем тропу", Toast.LENGTH_SHORT).show()
             } else {
                 binding.deleteButton.visibility = View.VISIBLE
             }
@@ -94,7 +93,7 @@ class EditTrailFragment : Fragment() {
             buttonRemove.setOnClickListener { adapter.removeCoordinate() }
 
             recyclerViewCoordinates.apply {
-                setHasFixedSize(false)
+                setHasFixedSize(true)
                 layoutManager = LinearLayoutManager(context)
                 adapter = this@EditTrailFragment.adapter
             }
@@ -143,7 +142,7 @@ class EditTrailFragment : Fragment() {
         }
     }
 
-    private fun isValidInput(
+    fun isValidInput(
         name: String,
         description: String,
         difficulty: String,

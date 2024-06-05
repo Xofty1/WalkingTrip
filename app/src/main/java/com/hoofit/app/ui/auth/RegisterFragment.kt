@@ -86,7 +86,10 @@ class RegisterFragment : Fragment() {
                             .setValue(user)
                             .addOnSuccessListener {
                                 Toast.makeText(context, "Все круто", Toast.LENGTH_LONG).show()
-                                startActivity(Intent(context, MainActivity::class.java))
+//                                startActivity(Intent(context, MainActivity::class.java))
+                                val fragment = SignInFragment()
+                                val transaction = parentFragmentManager.beginTransaction()
+                                MainActivity.makeTransaction(transaction, fragment)
                             }
                     }
                     .addOnFailureListener {

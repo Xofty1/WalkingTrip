@@ -102,7 +102,7 @@ class EditUserFragment : Fragment() {
                 ref.putFile(filePath!!)
                     .addOnSuccessListener {
                         progressDialog.dismiss()
-                        Toast.makeText(activity, "Uploaded", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(activity, "Загружено", Toast.LENGTH_SHORT).show()
                     }
                     .addOnFailureListener { e ->
                         progressDialog.dismiss()
@@ -157,6 +157,7 @@ class EditUserFragment : Fragment() {
                 arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
                 REQUEST_EXTERNAL_STORAGE
             )
+
         } else {
             openFileChooser()
         }

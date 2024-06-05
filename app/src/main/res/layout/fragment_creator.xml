@@ -32,16 +32,18 @@
             android:layout_height="160dp"
             android:layout_gravity="center"
             android:adjustViewBounds="true"
-            app:srcCompat="@drawable/logo"
-            android:scaleType="centerCrop"/>
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/me2" />
     </androidx.cardview.widget.CardView>
 
     <TextView
         android:id="@+id/textViewEditData"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Это приложение разработал студент группы ИКБО-03-22 Чернов Артем"
+        android:text="Это приложение разработал студент группы ИКБО-03-22 Чернов Артем в 2024 году"
         android:layout_margin="7dp"
+        android:textSize="21sp"
+        android:gravity="center_horizontal"
         android:layout_gravity="center_horizontal"
         android:textColor="@color/dark_blue"
         />
